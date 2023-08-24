@@ -13,7 +13,7 @@ services:
     volumes:
       - ~/docker/volumes/postgresql/data:/var/lib/postgresql/data
 
-  # optional postgresql web based tools
+  # optional postgresql browser tools
   pgadmin:
     image: dpage/pgadmin4
 
