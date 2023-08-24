@@ -4,8 +4,6 @@ services:
 
     ports:
       - 5432:5432
-    networks:
-      - postgres
     restart: unless-stopped
 
     environment:
@@ -15,13 +13,12 @@ services:
     volumes:
       - ~/docker/volumes/postgresql/data:/var/lib/postgresql/data
 
+  # optional postgresql web based tools
   pgadmin:
     image: dpage/pgadmin4
 
     ports:
       - 5050:80
-    networks:
-      - postgres
     restart: unless-stopped
     depends_on:
       - postgres
@@ -33,10 +30,6 @@ services:
 
     volumes:
       - pgadmin:/var/lib/pgadmin
-
-networks:
-  postgres:
-    driver: bridge
 
 volumes:
   pgadmin:
