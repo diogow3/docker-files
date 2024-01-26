@@ -1,0 +1,26 @@
+volumes:
+  db_data:
+
+services:
+  mysql:
+    container_name: mysql_container
+    image: mysql
+    environment:
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: app_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  # optional admin tool
+  adminer:
+    container_name: adminer_container
+    image: adminer
+    depends_on:
+      - mysql
+    restart: always
+    ports:
+      - 8080:8080
